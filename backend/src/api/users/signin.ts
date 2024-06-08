@@ -1,10 +1,10 @@
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
 import { z } from "zod";
+import { sign } from "hono/jwt";
 
 import prisma from "../../db/prisma";
 import { comparePasswords } from "../../utils/bcrypt";
-import { sign } from "hono/jwt";
 
 const signin = new Hono();
 

@@ -56,20 +56,20 @@ register.post(
 
           if (Array.isArray(fields)) {
             fields.map((f) => {
-              errPayload[f] = `"${f}" must be unique`;
+              errPayload[f] = `"${f}" has already been taken`;
             });
           }
 
           return c.json(
             {
-              error: {
-                errPayload,
-              },
+              error: errPayload,
             },
             400
           );
         }
       }
+
+      return c.json({ error: "Something went wrong" }, 500);
     }
 
     return c.json(
