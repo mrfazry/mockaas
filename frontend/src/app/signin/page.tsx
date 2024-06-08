@@ -4,7 +4,7 @@ import Form from "./form";
 
 export default function SigninPage() {
   return (
-    <div>
+    <div className="py-10 px-6">
       <Form />
     </div>
   );

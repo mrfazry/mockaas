@@ -7,6 +7,7 @@ import { z } from "zod";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
+import Link from "next/link";
 
 const schema = z.object({
   email: z.string().trim().email("Email must be valid"),
@@ -58,6 +59,8 @@ export default function Form() {
 
       if (res.ok) {
         setCookie("access_token", resPayload.token, { maxAge: 60 * 60 * 24 });
+
+        router.push("/browse");
       } else {
         setFormErrors(resPayload.error);
       }
@@ -72,7 +75,14 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-2xl bg-white p-6 flex flex-col max-w-[400px] mx-auto"
+    >
+      <h1 className="text-xl font-bold">Sign in</h1>
+
+      <div className="h-10" />
+
       <Input
         type="email"
         name="email"
@@ -82,7 +92,9 @@ export default function Form() {
         isInvalid={!!formErrors.email}
         errorMessage={formErrors.email}
       />
-      <br />
+
+      <div className="h-6" />
+
       <Input
         type={isPasswordVisible ? "text" : "password"}
         name="password"
@@ -107,8 +119,19 @@ export default function Form() {
           </button>
         }
       />
-      <br />
+
+      <div className="h-6" />
+
       <Button type="submit">Sign in</Button>
+
+      <div className="h-6" />
+
+      <p className="text-sm">
+        Don't have an account?{" "}
+        <Link href={`/register`} className="text-blue-600">
+          Sign in here
+        </Link>
+      </p>
     </form>
   );
 }

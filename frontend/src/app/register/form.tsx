@@ -6,6 +6,7 @@ import { Input } from "@nextui-org/input";
 import { z } from "zod";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const schema = z.object({
   username: z
@@ -21,7 +22,7 @@ const schema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
-export default function Form() {
+export default function Form(props: { success?: boolean }) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -83,53 +84,93 @@ export default function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-        placeholder="Username"
-        isInvalid={!!formErrors.username}
-        errorMessage={formErrors.username}
-      />
-      <br />
-      <Input
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="Email"
-        isInvalid={!!formErrors.email}
-        errorMessage={formErrors.email}
-      />
-      <br />
-      <Input
-        type={isPasswordVisible ? "text" : "password"}
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-        placeholder="Password"
-        isInvalid={!!formErrors.password}
-        errorMessage={formErrors.password}
-        endContent={
-          <button
-            className="focus:outline-none"
-            type="button"
-            onClick={() => {
-              setIsPasswordVisible(!isPasswordVisible);
-            }}
-          >
-            {isPasswordVisible ? (
-              <FaEyeSlash className="pointer-events-none text-2xl text-default-400" />
-            ) : (
-              <FaEye className="pointer-events-none text-2xl text-default-400" />
-            )}
-          </button>
-        }
-      />
-      <br />
-      <Button type="submit">Register</Button>
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-2xl bg-white p-6 flex flex-col max-w-[400px] mx-auto"
+    >
+      <h1 className="text-xl font-bold">Register</h1>
+
+      <div className="h-10" />
+
+      {props.success ? (
+        <p className="text-sm">
+          Registration success. Go to signin page by clicking{" "}
+          <Link href="/signin" className="text-blue-600">
+            here
+          </Link>
+          .
+        </p>
+      ) : (
+        <>
+          <Input
+            type="text"
+            name="username"
+            label="Username"
+            labelPlacement="outside"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Enter username"
+            isInvalid={!!formErrors.username}
+            errorMessage={formErrors.username}
+          />
+
+          <div className="h-6" />
+
+          <Input
+            type="email"
+            name="email"
+            label="Email"
+            labelPlacement="outside"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter email"
+            isInvalid={!!formErrors.email}
+            errorMessage={formErrors.email}
+          />
+
+          <div className="h-6" />
+
+          <Input
+            type={isPasswordVisible ? "text" : "password"}
+            label="Password"
+            labelPlacement="outside"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Enter password"
+            isInvalid={!!formErrors.password}
+            errorMessage={formErrors.password}
+            endContent={
+              <button
+                className="focus:outline-none"
+                type="button"
+                onClick={() => {
+                  setIsPasswordVisible(!isPasswordVisible);
+                }}
+              >
+                {isPasswordVisible ? (
+                  <FaEyeSlash className="pointer-events-none text-2xl text-default-400" />
+                ) : (
+                  <FaEye className="pointer-events-none text-2xl text-default-400" />
+                )}
+              </button>
+            }
+          />
+
+          <div className="h-6" />
+
+          <Button type="submit">Register</Button>
+
+          <div className="h-6" />
+
+          <p className="text-sm">
+            Already had an account?{" "}
+            <Link href={`/signin`} className="text-blue-600">
+              Sign in here
+            </Link>
+          </p>
+        </>
+      )}
     </form>
   );
 }

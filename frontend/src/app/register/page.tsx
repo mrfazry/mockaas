@@ -9,14 +9,8 @@ export default function RegisterPage(props: {
   const successRegistering = props.searchParams?.success === "true";
 
   return (
-    <div>
-      {successRegistering ? (
-        <p>
-          Registration succes. Go to signin page by clicking{" "}
-          <Link href="/signin">here</Link>.
-        </p>
-      ) : null}
-      <Form />
+    <div className="py-10 px-6">
+      <Form success={successRegistering} />
     </div>
   );
 }
