@@ -40,44 +40,49 @@ export default function Footer() {
   ];
 
   return (
-    <div className="bg-yellow-500 p-6 rounded-t-2xl">
-      <p className="text-sm font-bold">Follow us</p>
+    <div>
+      <div className="bg-yellow-500 p-6 rounded-t-2xl">
+        <p className="text-sm font-bold">Follow us</p>
 
-      <div className="h-4" />
+        <div className="h-4" />
 
-      <div className="flex gap-4">
-        {socialMedias.map((sm) => (
-          <a href={sm.link} target="_blank" className="">
-            <sm.icon className="text-orange-800 w-6 h-6" />
-          </a>
-        ))}
+        <div className="flex gap-4">
+          {socialMedias.map((sm) => (
+            <a href={sm.link} target="_blank" className="">
+              <sm.icon className="text-orange-800 w-6 h-6" />
+            </a>
+          ))}
+        </div>
+
+        <div className="h-6" />
+
+        <p className="text-sm font-bold">Contact us</p>
+        <div className="h-4" />
+
+        <div className="text-white flex gap-4 items-center">
+          <BsEnvelopeFill />
+          <a href="mailto:info@mockaas.tv">info@mockaas.tv</a>
+        </div>
+
+        <div className="h-2" />
+
+        <div className="text-white flex gap-4 items-center">
+          <BsTelephoneFill />
+          <a href="tel:+6281234567890">+62 812 3456 7890</a>
+        </div>
+
+        <div className="h-6" />
+
+        <p className="text-sm font-bold">Address</p>
+        <div className="h-4" />
+
+        <div className="text-white flex gap-4 items-center">
+          <FaMapMarker />
+          <p>Jakarta</p>
+        </div>
       </div>
-
-      <div className="h-6" />
-
-      <p className="text-sm font-bold">Contact us</p>
-      <div className="h-4" />
-
-      <div className="text-white flex gap-4 items-center">
-        <BsEnvelopeFill />
-        <a href="mailto:info@mockaas.tv">info@mockaas.tv</a>
-      </div>
-
-      <div className="h-2" />
-
-      <div className="text-white flex gap-4 items-center">
-        <BsTelephoneFill />
-        <a href="tel:+6281234567890">+62 812 3456 7890</a>
-      </div>
-
-      <div className="h-6" />
-
-      <p className="text-sm font-bold">Address</p>
-      <div className="h-4" />
-
-      <div className="text-white flex gap-4 items-center">
-        <FaMapMarker />
-        <p>Jakarta</p>
+      <div className="bg-blue-700 p-4">
+        <p className="text-center font-bold">Powered by mockaas.tv</p>
       </div>
     </div>
   );
