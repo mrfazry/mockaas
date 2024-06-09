@@ -82,7 +82,9 @@ export default function Footer() {
         </div>
       </div>
       <div className="bg-blue-700 p-4">
-        <p className="text-center font-bold">Powered by mockaas.tv</p>
+        <p className="text-center font-bold text-white">
+          Powered by mockaas.tv
+        </p>
       </div>
     </div>
   );
