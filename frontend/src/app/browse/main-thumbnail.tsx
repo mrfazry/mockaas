@@ -2,11 +2,17 @@
 
 import { Button, Chip } from "@nextui-org/react";
 import React, { useState } from "react";
+import Link from "next/link";
 
 import mainThumbnailStyle from "./main-thumbnail.module.css";
 
 export default function MainThumbnail(props: {
-  film: { title: string; description: string; image_thumbnail: string };
+  film: {
+    id: string;
+    title: string;
+    description: string;
+    image_thumbnail: string;
+  };
 }) {
   const { film } = props;
 
@@ -61,7 +67,9 @@ export default function MainThumbnail(props: {
         <div className="h-6" />
 
         <div className="flex gap-4">
-          <Button className="bg-yellow-500 text-gray-900">Play</Button>
+          <Link href={`/watch/${film.id}`}>
+            <Button className="bg-yellow-500 text-gray-900">Play</Button>
+          </Link>
           <Button variant="ghost" className="text-white border-white">
             Share
           </Button>
