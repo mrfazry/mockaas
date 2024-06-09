@@ -1,7 +1,7 @@
 # mockaas.tv
 
 ## Description
-mockaas.tv is a mock of mocaas.tv. The demo can be accessed [here](https://mockaas.fazry.me).
+mockaas.tv is a mock of mocaas.tv.
 
 ## Installation
 
